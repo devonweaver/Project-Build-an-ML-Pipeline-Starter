@@ -112,7 +112,7 @@ def go(config: DictConfig):
                     "stratify_by": str(config["modeling"]["stratify_by"]),
                     "rf_config": rf_config,
                     "max_tfidf_features": str(config["modeling"]["max_tfidf_features"]),
-                    "output_artifact": "random_forest_export",
+                    "output_artifact": "model_export",
                 },
             )
 
@@ -123,10 +123,11 @@ def go(config: DictConfig):
                 "main",
                 env_manager="conda",
                 parameters={
-                    "mlflow_model": "random_forest_export:prod",
+                    "mlflow_model": "model_export:prod",
                     "test_dataset": "test_data.csv:latest",
                 },
             )
+
 
 if __name__ == "__main__":
     go()
